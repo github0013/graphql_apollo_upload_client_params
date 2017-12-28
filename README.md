@@ -1,28 +1,45 @@
 # GraphqlApolloUploadClientParams
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/graphql_apollo_upload_client_params`. To experiment with that code, run `bin/console` for an interactive prompt.
+apollo-client v2 + rails (graphql-ruby) to upload files in mutation.
 
-TODO: Delete this and the text above, and describe your gem
+```js
+// if upload a file like this
+this.props
+  .mutate({
+    variables: {
+      file: uploadingFileObject
+    }
+  })
+  .then();
+```
+
+```ruby
+# then the server receives params like this
+# params[:operations] => json containing query and variables
+# params[:map] => json containing uploaded file mapping data
+# params["0"..] => number string key containing the actual file object ActionDispatch::Http::UploadedFile
+
+class GraphqlController < ApplicationController
+
+  def execute
+    # this gem will try to convert the params to useful variables, query, operation_name
+    converted_params = GraphqlApolloUploadClientParams.convert(params)
+    variables = converted_params.variables
+    query = converted_params.query
+    operation_name = converted_params.operation_name
+```
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'graphql_apollo_upload_client_params'
+gem 'graphql_apollo_upload_client_params', path: "clone this repo and point to your local path"
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install graphql_apollo_upload_client_params
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 
