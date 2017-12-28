@@ -22,7 +22,7 @@ module GraphqlApolloUploadClientParams
         end
 
         def map
-          JSON.parse(params[:map]) rescue {}
+          ensure_hash(params[:map]) rescue {}
         end
 
         def set_file_at_end(hash, dot_path, file)
