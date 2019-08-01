@@ -41,6 +41,10 @@ module GraphqlApolloUploadClientParams
             }.with_indifferent_access
           end
           it{ expect(subject.variables).to eq({"a" => [{"x" => file}]}) }
+          describe :with_indifferent_access do
+            it{ expect(subject.variables[:a]).to match(Array) }
+            it{ expect(subject.variables[:a][0]).to match(hash_including({x: file})) }
+          end
         end
       end
 

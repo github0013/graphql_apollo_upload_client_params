@@ -5,7 +5,7 @@ module GraphqlApolloUploadClientParams
       def variables
         ensure_hash(operations)["variables"].tap do |v|
           file_mapping v
-        end
+        end.with_indifferent_access
       end
 
       def query
