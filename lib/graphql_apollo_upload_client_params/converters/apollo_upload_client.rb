@@ -13,7 +13,7 @@ module GraphqlApolloUploadClientParams
       end
 
       def operation_name
-        ensure_hash(operations)["operation_name"]
+        ensure_hash(operations)["operationName"]
       end
 
       private
