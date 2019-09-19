@@ -11,7 +11,7 @@ module GraphqlApolloUploadClientParams
       end
 
       def operation_name
-        params[:operationName]
+        params[:operation_name]
       end
 
     end
